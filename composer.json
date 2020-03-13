@@ -1,0 +1,16 @@
+{
+    "name": "x-arok/tasksmanager",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "X-AROK",
+            "email": "an_xarok@mail.ru"
+        }
+    ],
+    "require": {},
+	
+    "autoload": {
+        "psr-4": {"App\\": "app/"}
+    }
+}

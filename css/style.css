@@ -1,0 +1,64 @@
+* {
+	margin: 0;
+}
+
+.content {
+	margin-top: 100px;
+}
+
+.header {
+	margin-bottom: 30px;
+}
+
+
+/* Tasks */
+.task {
+	margin-bottom: 20px;
+}
+
+.task-head{
+	border-bottom: 1px solid black;
+	border-top: 1px solid black;
+}
+.task-head-elem {
+	overflow-wrap: break-word;
+	border-right: 1px solid black;
+}
+.task-head-elem:first-child {
+	border-left: 1px solid black;
+}
+
+.task-content {
+	overflow-wrap: break-word;
+	border: 1px solid black;
+	border-top: none;
+	padding: 5px;
+}
+
+.task-footer {
+	padding: 5px 0;
+	border-bottom: 1px solid black;
+}
+
+.task-footer:first-child {
+	border-left: 1px solid black;
+}
+
+.task-footer:last-child {
+	border-right: 1px solid black;
+}
+
+.task-footer-elem{
+	padding: 5px;
+}
+/* ---- */
+
+/* Forms */
+.form-group {
+	margin-bottom: 20px;
+}
+
+textarea {
+	min-height: 50px;
+}
+/* ---- */
