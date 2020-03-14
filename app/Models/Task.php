@@ -11,13 +11,13 @@ class Task
 		App::$db->execute("INSERT INTO tasks (username, email, body) VALUES (?, ?, ?)", array($username, $email, $body));
 	}
 
-	public static function update($id, $username, $email, $body, $status)
+	public static function update($id, $username, $email, $body, $status, $updated)
 	{
-		$query = App::$db->execute("UPDATE tasks SET username=?, email=?, body=?, status=?, updated=1 WHERE id=?", array($username, $email, $body, $status, $id));
+		$query = App::$db->execute("UPDATE tasks SET username=?, email=?, body=?, status=?, updated=? WHERE id=?", array($username, $email, $body, $status, $updated, $id));
 		var_dump($query);
 	}
 
-	public function delete($id)
+	public static function delete($id)
 	{
 		App::$db->execute("DELETE FROM tasks WHERE id=?", array($id));
 	}
@@ -34,11 +34,21 @@ class Task
 		$offset = ($page - 1) * 3;
 		switch ($direction) {
 			case 'desc':
-				$tasks = App::$db->execute("SELECT * FROM tasks ORDER BY {$order} DESC LIMIT 3 OFFSET {$offset}");
+				if ($order === 'status') {
+					$orderby = 'ORDER BY status DESC, updated DESC';
+				} else {
+					$orderby = "ORDER BY {$order} DESC";
+				}
+				$tasks = App::$db->execute("SELECT * FROM tasks {$orderby} LIMIT 3 OFFSET {$offset}");
 				break;
 			case 'asc':
 			default:
-				$tasks = App::$db->execute("SELECT * FROM tasks ORDER BY {$order} ASC LIMIT 3 OFFSET {$offset}");
+				if ($order === 'status') {
+					$orderby = 'ORDER BY status ASC, updated ASC';
+				} else {
+					$orderby = "ORDER BY {$order} ASC";
+				}
+				$tasks = App::$db->execute("SELECT * FROM tasks {$orderby} LIMIT 3 OFFSET {$offset}");
 				break;
 		}
 		

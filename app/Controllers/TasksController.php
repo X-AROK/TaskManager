@@ -95,13 +95,21 @@ class TasksController extends Controller
 		$body = htmlspecialchars($_POST['body']);
 		$status = isset($_POST['status']) ? 1 : 0;
 
+		$oldTask = Task::getById($id);
+
+		if ($oldTask['body'] !== $body || $oldTask['updated']) {
+			$updated = 1;
+		} else {
+			$updated = 0;
+		}
+
 		$errors = Task::validate($username, $email, $body);
 		if (!empty($errors)) {
 			$this->view('layout', 'tasks.edit', compact('username', 'email', 'body', 'errors', 'status'));
 			return;
 		}
 
-		Task::update($id, $username, $email, $body, $status);
+		Task::update($id, $username, $email, $body, $status, $updated);
 		header("Location: /");
 	}
 

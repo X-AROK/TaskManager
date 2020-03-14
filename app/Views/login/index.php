@@ -1,6 +1,6 @@
 <div class="header row">
 	<div class="col-2"></div>
-	<div class="col-2">Создать задачу</div>
+	<div class="col-2">Вход</div>
 	<div class="col-4"></div>
 	<div class="col-2">
 		<a href="/">Назад</a>
